@@ -26,12 +26,30 @@ static void	ft_init_struct(t_ps *inst, int *stk_a, int amt)
  * in leftover array on stk_a preform previous operation,    ->
  * repeat until 5 or less values left;
  */
-static void	ft_push_right(t_ps *inst)
+static int	ft_push_right(t_ps *inst)
 {
 	int mid;
+	int	half;
+	int iter;
 
-	mid = ft_mid_value(inst->stk_a, inst->amt_a);
-	while ()
+	iter = 0;
+	while (inst->amt_a)
+	{
+		if (inst->amt_a <= 4)
+		{
+			ft_asort_for_less_4(inst, iter);
+			break ;
+		}
+		half = 0;
+		mid = ft_mid_value(inst->stk_a, inst->amt_a);
+		while(half < inst->amt_a / 2)
+		{
+			ft_pushb_cheapest(inst, mid);
+			half++;
+		}
+		iter++;
+	}
+	return (iter);
 }
 
 /**
@@ -42,9 +60,10 @@ static void	ft_push_right(t_ps *inst)
  */
 char	*ft_main_sort(int *stk_a, int amt)
 {
-	t_ps inst;
+	t_ps	inst;
+	int		iter;
 
 	ft_init_struct(&inst, stk_a, amt);
-	ft_push_right(&inst);
+	iter = ft_push_right(&inst);
 }
 
