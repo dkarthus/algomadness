@@ -11,6 +11,8 @@ typedef struct	s_ps
 	int		*stk_b;
 	int		amt_a;
 	int		amt_b;
+	int 	*chunks;
+	int 	chunks_pos;
 	char	*sort_str;
 	int 	sort_str_pos;
 }				t_ps;
@@ -18,12 +20,15 @@ typedef struct	s_ps
 void	ft_input_check(char *strs[], int amount);
 int		*ft_input_process(char *strs[], int amt);
 int		ft_sort_ch(const int *arr, int amt);
-void	ft_error(int err, char *location, void *ptr_to_free);
+void	ft_error(int err, char *location, t_ps *inst);
 
 char	*ft_main_sort(int *stk_a, int amt);
 int		ft_mid_value(int *stk_a, int amt);
-void	ft_asort_for_less_4(t_ps *inst, int iter);
-void	ft_pushb_cheapest(t_ps *inst, int mid);
+void	ft_asort_for_less_4(t_ps *inst);
+void	ft_sort_a_3(t_ps *inst);
+void	ft_sort_a_4(t_ps *inst);
+void	ft_sort_b_3(t_ps *inst);
+void	ft_sort_b_4(t_ps *inst);
 
 
 void	ft_pa(t_ps *inst);

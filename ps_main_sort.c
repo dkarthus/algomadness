@@ -1,5 +1,34 @@
 #include "push_swap.h"
 
+/*
+ * Push b, cheapest operations wise, value lower than median value in a;
+ * Util func for ft_push_right;
+ */
+static void ft_pushb_cheapest(t_ps *inst, int mid)
+{
+	int top;
+	int bot;
+
+	top = 0;
+	bot = 1;
+	while (inst->stk_a[top] >= mid)
+		top++;
+	while (inst->stk_a[inst->amt_a - bot] >= mid)
+		bot++;
+	if (top <= bot)
+	{
+		while (top-- > 0)
+			ft_ra(inst);
+		ft_pb(inst);
+	}
+	if (top > bot)
+	{
+		while (bot-- > 0)
+			ft_rra(inst);
+		ft_pb(inst);
+	}
+}
+
 /**
  * Utility func for ft_main_sort, inits main struct
  */
@@ -9,24 +38,20 @@ static void	ft_init_struct(t_ps *inst, int *stk_a, int amt)
 	inst->amt_b = 0;
 	inst->stk_a = stk_a;
 	inst->stk_b = malloc(amt * sizeof(int));
-	if (!inst->stk_b)
-		ft_error(1, "ft_init_struct", stk_a);
+	inst->chunks = malloc(100 * sizeof(int));
 	inst->sort_str = ft_calloc(99999, sizeof(char));
 	inst->sort_str_pos = 0;
-	if (!inst->sort_str)
-	{
-		free(inst->stk_b);
-		ft_error(1, "ft_init_struct", stk_a);
-	}
+	if (!inst->stk_b || !inst->chunks || !inst->sort_str)
+		ft_error(1, "ft_init_struct", inst);
 }
 
 /*
- *--------Util func for presort stack and push it to b---------
+ *-----Func for presort stack A in chunks and push it to B-----
  * find mid in array on stk_a and push above values to stk_b ->
  * in leftover array on stk_a preform previous operation,    ->
- * repeat until 5 or less values left;
+ * repeat until 4 or less values left;
  */
-static int	ft_push_right(t_ps *inst)
+static void	ft_push_right(t_ps *inst)
 {
 	int mid;
 	int	half;
@@ -37,7 +62,8 @@ static int	ft_push_right(t_ps *inst)
 	{
 		if (inst->amt_a <= 4)
 		{
-			ft_asort_for_less_4(inst, iter);
+			inst->chunks_pos = iter - 1;
+			ft_asort_for_less_4(inst);
 			break ;
 		}
 		half = 0;
@@ -47,9 +73,9 @@ static int	ft_push_right(t_ps *inst)
 			ft_pushb_cheapest(inst, mid);
 			half++;
 		}
+		inst->chunks[iter] = half;
 		iter++;
 	}
-	return (iter);
 }
 
 /**
@@ -61,9 +87,8 @@ static int	ft_push_right(t_ps *inst)
 char	*ft_main_sort(int *stk_a, int amt)
 {
 	t_ps	inst;
-	int		iter;
 
 	ft_init_struct(&inst, stk_a, amt);
-	iter = ft_push_right(&inst);
+	ft_push_right(&inst);
 }
 

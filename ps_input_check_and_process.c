@@ -20,7 +20,7 @@ void	ft_input_check(char *strs[], int amt)
 		while (strs[amt][i] != '\0')
 		{
 			if (!ft_isdigit(strs[amt][i]))
-				ft_error(1, NULL, NULL);
+				ft_error(2, NULL, NULL);
 			i++;
 		}
 		amt--;
@@ -70,7 +70,7 @@ int	*ft_input_process(char *strs[], int amt)
 		tmp = ft_atoi(strs[i + 1]);
 		stk_a[i] = (int)tmp;
 		if (2147483647 < tmp || tmp < -2147483648 || ft_chk_dupl(stk_a, i))
-			ft_error(2, NULL, stk_a);
+			ft_error(2, NULL, NULL);
 		i++;
 	}
 	if (ft_sort_ch(stk_a, amt))

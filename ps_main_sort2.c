@@ -4,59 +4,65 @@
  * Utility func for sorting both stacks when there only 4 values left in a;
  * amt_b_srt - amount of values in stack b to sort;
  */
-void ft_asort_for_less_4(t_ps *inst, int iter)
+void ft_asort_for_less_4(t_ps *inst)
 {
-	int lst_psh_amt;
-
-	lst_psh_amt = (inst->amt_a + inst->amt_b) / (2 * (iter - 1));
 	if (inst->amt_a == 3)
 	{
-		if (lst_psh_amt == 6)
+		ft_sort_a_3(inst);
+		if (inst->chunks[inst->chunks_pos] == 2)
 		{
 
 		}
-		if (lst_psh_amt == 5)
-		{
-
-		}
+		if (inst->chunks[inst->chunks_pos] == 3)
+			ft_sort_b_3(inst);
 	}
 	if (inst->amt_a == 4)
 	{
-		if (lst_psh_amt == 7)
-		{
-
-		}
-		if (lst_psh_amt == 8)
-		{
-
-		}
+		ft_sort_a_4(inst);
+		if (inst->chunks[inst->chunks_pos] == 3)
+			ft_sort_b_3(inst);
+		if (inst->chunks[inst->chunks_pos] == 4)
+			ft_sort_b_4(inst);
 	}
 }
 
 /*
- * Push b, cheapest operations wise, value lower than median value in a;
+ * Func for sorting 3 values on stack A;
  */
-void ft_pushb_cheapest(t_ps *inst, int mid)
+void ft_sort_a_3(t_ps *inst)
 {
-	int top;
-	int bot;
+	if (inst->stk_a[0] > inst->stk_a[1] && inst->stk_a[0] < inst->stk_a[2])
+	{
+		if (inst->amt_b >= 2 && inst->stk_b[0] < inst->stk_b[1])
+			ft_ss(inst);
+		else
+			ft_sa(inst);
+	}
+	if (inst->stk_a[1] > inst->stk_a[2] && inst->stk_a[1] < inst->stk_a[0])
+	{
 
-	top = 0;
-	bot = 1;
-	while (inst->stk_a[top] >= mid)
-		top++;
-	while (inst->stk_a[inst->amt_a - bot] >= mid)
-		bot++;
-	if (top <= bot)
-	{
-		while (top-- > 0)
-			ft_ra(inst);
-		ft_pb(inst);
 	}
-	if (top > bot)
-	{
-		while (bot-- > 0)
-			ft_rra(inst);
-		ft_pb(inst);
-	}
+}
+
+/*
+ * Func for sorting 4 values on stack A;
+ */
+void ft_sort_a_4(t_ps *inst)
+{
+
+}
+/*
+ * Func for sorting 3 values on stack B;
+ */
+void ft_sort_b_3(t_ps *inst)
+{
+
+}
+
+/*
+ * Func for sorting 4 values on stack B;
+ */
+void ft_sort_b_4(t_ps *inst)
+{
+
 }

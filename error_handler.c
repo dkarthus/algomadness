@@ -5,7 +5,7 @@
  * err = 1 - malloc error
  * err = 2 - invalid values
  */
-void ft_error(int err, char *location, void *ptr_to_free)
+void ft_error(int err, char *location, t_ps *inst)
 {
 	if (err == 1)
 	{
@@ -14,7 +14,16 @@ void ft_error(int err, char *location, void *ptr_to_free)
 	}
 	if (err == 2)
 		ft_putstr_fd("ERROR!\nInvalid values.\n", 1);
-	if (ptr_to_free)
-		free(ptr_to_free);
+	if (inst)
+	{
+		if (inst->stk_a)
+			free(inst->stk_a);
+		if (inst->stk_b)
+			free(inst->stk_b);
+		if (inst->sort_str)
+			free(inst->sort_str);
+		if (inst->chunks)
+			free(inst->chunks);
+	}
 	exit (1);
 }
