@@ -13,17 +13,18 @@ void ft_asort_for_less_4(t_ps *inst)
 		{
 			if (inst->stk_b[0] < inst->stk_b[1])
 				ft_sb(inst);
-			ft_pb(inst);
+			ft_pa(inst);
+			ft_pa(inst);
 		}
-		if (inst->chunks[inst->chunks_pos] == 3)
+		else if (inst->chunks[inst->chunks_pos] == 3)
 			ft_sort_b_3(inst);
 	}
-	if (inst->amt_a == 4)
+	else if (inst->amt_a == 4)
 	{
 		ft_sort_a_4(inst);
 		if (inst->chunks[inst->chunks_pos] == 3)
 			ft_sort_b_3(inst);
-		if (inst->chunks[inst->chunks_pos] == 4)
+		else if (inst->chunks[inst->chunks_pos] == 4)
 			ft_sort_b_4(inst);
 	}
 	inst->chunks_pos--;

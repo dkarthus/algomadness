@@ -29,7 +29,7 @@ int	ft_mid_value(int *stk_a, int amt)
 		tmp[j + 1] = key;
 		i++;
 	}
-	key = tmp[(amt - 1) / 2];
+	key = tmp[amt / 2];
 	free(tmp);
 	return(key);
 }

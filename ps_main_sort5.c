@@ -20,6 +20,7 @@ static void	ft_util1(t_ps *inst)
 			ft_rb(inst);
 			pos--;
 		}
+		ft_pa(inst);
 	}
 	ft_sort_b_3(inst);
 }
