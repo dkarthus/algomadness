@@ -22,11 +22,12 @@ void	ft_input_check(char *strs[], int amount);
 int		*ft_input_process(char *strs[], int amt);
 int		ft_sort_ch(const int *arr, int amt);
 void	ft_error(int err, char *location, t_ps *inst);
+void	ft_exit(t_ps *inst);
 
-char	*ft_main_sort(int *stk_a, int amt);
+void	ft_main_sort(int *stk_a, int amt);
 int		ft_minmax(int *arr, int n, int minmax);
 int		ft_mid_value(int *stk_a, int amt);
-void	ft_asort_for_less_4(t_ps *inst);
+void	ft_asort_for_less_4(t_ps *inst, int to_srt);
 void	ft_sort_a_3(t_ps *inst);
 void	ft_sort_a_4(t_ps *inst);
 void	ft_sort_b_3(t_ps *inst);

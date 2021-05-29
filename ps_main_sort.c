@@ -61,18 +61,16 @@ static void	ft_push_right(t_ps *inst, int to_psh)
 	{
 		if (to_psh <= 4)
 		{
-			ft_asort_for_less_4(inst);
+			ft_asort_for_less_4(inst, to_psh);
 			break ;
 		}
 		inst->chunks_pos++;
 		half = to_psh / 2;
 		inst->chunks[inst->chunks_pos] = half;
 		mid = ft_mid_value(inst->stk_a, to_psh);
-		printf("mid %d\n", mid);
 		while(half > 0)
 		{
 			ft_pushb_cheapest(inst, mid);
-			printf("half %d\n", half);
 			half--;
 			to_psh--;
 		}
@@ -80,57 +78,81 @@ static void	ft_push_right(t_ps *inst, int to_psh)
 }
 
 /**
+ *	Func for pushing half of top chunk on stack B to stack A
+ */
+static int	ft_push_left(t_ps *inst)
+{
+	int mid;
+	int cnt;
+	int	pshd;
+	int i;
+
+	cnt = 0;
+	i = 0;
+	pshd = inst->chunks[inst->chunks_pos] - inst->chunks[inst->chunks_pos] / 2;
+	mid = ft_mid_value(inst->stk_b, inst->chunks[inst->chunks_pos]);
+	while(i < pshd)
+	{
+		if (inst->stk_b[0] >= mid)
+		{
+			ft_pa(inst);
+			i++;
+		}
+		else
+		{
+			ft_rb(inst);
+			cnt++;
+		}
+	}
+	while (cnt--)
+		ft_rrb(inst);
+	inst->chunks[inst->chunks_pos] = inst->chunks[inst->chunks_pos] / 2;
+	return (pshd);
+}
+
+/**
  * --Main func for calling sort utility func's---
  *stk_a & stk_b - A and B stacks arrays
  * amt_a & amt_b - amount of values in A and B stacks
  * sort_str - string that contains actions performed by my sorting algo
- *
-char	*ft_main_sort(int *stk_a, int amt)
+ */
+void ft_main_sort(int *stk_a, int amt)
 {
 	t_ps	inst;
+	int 	to_srt;
 
 	ft_init_struct(&inst, stk_a, amt);
-	ft_push_right(&inst);
-}*/
-
-/**
- *	Func for pushing half of top chunk on stack B to stack A
- */
-static void ft_push_left(t_ps *inst)
-{
-	int mid;
-	int	half;
-
-	half = inst->chunks[inst->chunks_pos] / 2;
-	mid = ft_mid_value(inst->stk_b, inst->chunks[inst->chunks_pos]);
-	inst->chunks[inst->chunks_pos] = inst->chunks[inst->chunks_pos] - half;
-	printf("mid %d\n", mid);
-	while(half > 0)
+	ft_push_right(&inst, amt);
+	while (inst.chunks_pos >= 0)
 	{
-		if (inst->stk_b[0] > mid)
-		printf("half %d\n", half);
-		half--;
-		to_psh--;
+		to_srt = ft_push_left(&inst);
+		ft_push_right(&inst, to_srt);
 	}
-	}
+	ft_putstr_fd(inst.sort_str, 1);
+	ft_exit(&inst);
 }
-
+/*
 int main(void)
 {
 	t_ps	inst;
 	int 	stk_a[] = { 111, -1, 3, 4, 5, 123, -123, 11111, 321, -321, 999, 0 };
 	int		*stk;
+	int		to_srt;
 	int		i;
 
 	i = 0;
 	stk = malloc(8 * sizeof(int));
 	ft_memcpy(stk, stk_a, 8 * sizeof(int));
 	ft_init_struct(&inst, stk_a, 12);
-	ft_push_right(&inst, inst.amt_a);
-/**	while (inst.chunks_pos >= 0)
+	ft_push_right(&inst, 12);
+	while (inst.chunks_pos >= 0)
 	{
-		ft_push
-	}*/
+//		if (inst.amt_a == 12 && ft_sort_ch(inst.stk_a, 12))
+//			break;
+		to_srt = ft_push_left(&inst);
+		printf("%d\n", to_srt);
+		ft_push_right(&inst, to_srt);
+	}
 
 	printf("amt_a %d\n", inst.amt_a);
 	printf("amt_b %d\n", inst.amt_b);
@@ -150,5 +172,6 @@ int main(void)
 	printf("%d, ", inst.chunks[0]);
 	printf("%d, ", inst.chunks[1]);
 	printf("\npos %d\n", inst.chunks_pos);
-	printf("%s", inst.sort_str);
+
 }
+*/

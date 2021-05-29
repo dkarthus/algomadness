@@ -1,14 +1,23 @@
-NAME =
+NAME = push_swap
 
 FLAG = -Wall -Werror -Wextra
 
 LIB = ./libft/libft.a
 
-INC = ./inc
-
 LIBOBJ = ../libft/%.o
 
-SRC =
+SRC = ps_input_check_and_process.c \
+ 		ps_main_sort.c \
+ 		 ps_main_sort2.c \
+ 		 ps_main_sort3.c \
+ 		 ps_main_sort4.c \
+ 		 ps_main_sort5.c \
+ 		 ps_mid_value.c \
+ 		 ps_operations.c \
+ 		 ps_operations2.c \
+ 		 ps_operations3.c \
+ 		 push_swap.c \
+ 		 error_handler.c
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -17,8 +26,8 @@ OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBOBJ)
-	ar -rcs $(NAME) $(OBJ) $(LIBOBJ)
+$(NAME): $(OBJ) $(LIBOBJ) push_swap.h
+	gcc $(FLAG) $(OBJ) $(LIB) -o $(NAME)
 
 %.o: %.c
 	gcc $(FLAG) -c $< -o $@

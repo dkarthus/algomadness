@@ -32,6 +32,7 @@ int ft_minmax(int *arr, int n, int minmax)
 			return (i - 1);
 		i--;
 	}
+	return (-1);
 }
 
 /*
@@ -69,6 +70,8 @@ void ft_sort_a_4(t_ps *inst)
 	int pos;
 	int i;
 
+	if (ft_sort_ch(inst->stk_a, 4))
+		return;
 	pos = ft_minmax(inst->stk_a, 4, 0);
 	if (inst->amt_a == 4)
 		ft_util_lst_chunk(inst, pos);
