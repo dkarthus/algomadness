@@ -9,7 +9,7 @@ void	ft_rra(t_ps *inst)
 	int	tmp;
 	int i;
 
-	if (inst->amt_a < 3)
+	if (inst->amt_a < 2)
 		ft_putstr_fd("RRA - WRONG OPERATION CALL\n", 1);
 	tmp = inst->stk_a[inst->amt_a - 1];
 	i = inst->amt_a - 1;
@@ -32,7 +32,7 @@ void	ft_rrb(t_ps *inst)
 	int	tmp;
 	int i;
 
-	if (inst->amt_b < 3)
+	if (inst->amt_b < 2)
 		ft_putstr_fd("RRB - WRONG OPERATION CALL\n", 1);
 	tmp = inst->stk_b[inst->amt_b - 1];
 	i = inst->amt_b - 1;

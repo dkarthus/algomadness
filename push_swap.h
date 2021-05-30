@@ -18,8 +18,9 @@ typedef struct	s_ps
 	int 	sort_str_pos;
 }				t_ps;
 
-void	ft_input_check(char *strs[], int amount);
+void	ft_input_check(char *strs[], int amount, int mode);
 int		*ft_input_process(char *strs[], int amt);
+int		*ft_input_process_alt(char *strs[], int amt);
 int		ft_sort_ch(const int *arr, int amt);
 void	ft_error(int err, char *location, t_ps *inst);
 void	ft_exit(t_ps *inst);

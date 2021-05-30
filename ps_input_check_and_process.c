@@ -6,24 +6,34 @@
  * amt - amount of string in strs;
  * on error prints msq and exit.
  */
-void	ft_input_check(char *strs[], int amt)
+void	ft_input_check(char *strs[], int amt, int mode)
 {
 	int	i;
+	int j;
 
-	while (amt > 0)
+	j = 0;
+	if (mode)
+		j = 1;
+	while (j < amt)
 	{
 		i = 0;
-		if (strs[amt][0] == '-')
+		if (strs[j][0] == '-')
 			i++;
-		if (!strs[amt][i])
-			ft_error(2, NULL, NULL);
-		while (strs[amt][i] != '\0')
+		if (!strs[j][i])
 		{
-			if (!ft_isdigit(strs[amt][i]))
+			printf("1");
+			ft_error(2, NULL, NULL);
+		}
+		while (strs[j][i] != '\0')
+		{
+			if (!ft_isdigit(strs[j][i]))
+			{
+				printf("2");
 				ft_error(2, NULL, NULL);
+			}
 			i++;
 		}
-		amt--;
+		j++;
 	}
 }
 
@@ -49,7 +59,7 @@ static int	ft_chk_dupl(int *stk_a, int i)
 }
 
 /**
- * -------------Function for processing input values.---------------
+ * -----Function for processing input values.(multi-argument)----------
  * strs - 2d array with digit values;
  * amt - amount of string in strs;
  * on error prints msq and exit.
@@ -75,7 +85,39 @@ int	*ft_input_process(char *strs[], int amt)
 	}
 	if (ft_sort_ch(stk_a, amt))
 	{
-		ft_putstr_fd("\n", 1);
+		free(stk_a);
+		exit (0);
+	}
+	return (stk_a);
+}
+
+/**
+ * -------unction for processing input values(1 argument)---------
+ * strs - 2d array with digit values;
+ * amt - amount of string in strs;
+ * on error prints msq and exit.
+ * returns pointer on stack "A"
+ */
+int	*ft_input_process_alt(char *strs[], int amt)
+{
+	int		*stk_a;
+	int		i;
+	long	tmp;
+
+	stk_a = malloc(sizeof(int) * amt);
+	if (!stk_a)
+		ft_error(1, "ft_input_process", NULL);
+	i = 0;
+	while (i < amt)
+	{
+		tmp = ft_atoi(strs[i]);
+		stk_a[i] = (int)tmp;
+		if (2147483647 < tmp || tmp < -2147483648 || ft_chk_dupl(stk_a, i))
+			ft_error(2, NULL, NULL);
+		i++;
+	}
+	if (ft_sort_ch(stk_a, amt))
+	{
 		free(stk_a);
 		exit (0);
 	}

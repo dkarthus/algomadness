@@ -4,10 +4,11 @@
  * Push b, cheapest operations wise, value lower than median value in a;
  * Util func for ft_push_right;
  */
-static void ft_pushb_cheapest(t_ps *inst, int mid)
+static int ft_pushb_cheapest(t_ps *inst, int mid)
 {
 	int top;
 	int bot;
+	int ra;
 
 	top = 0;
 	bot = 1;
@@ -17,16 +18,19 @@ static void ft_pushb_cheapest(t_ps *inst, int mid)
 		bot++;
 	if (top <= bot)
 	{
-		while (top-- > 0)
+		ra = top;
+		while (top--)
 			ft_ra(inst);
 		ft_pb(inst);
 	}
 	else
 	{
-		while (bot-- > 0)
+		ra = 0;
+		while (bot--)
 			ft_rra(inst);
 		ft_pb(inst);
 	}
+	return(ra);
 }
 
 /**
@@ -52,10 +56,11 @@ static void	ft_init_struct(t_ps *inst, int *stk_a, int amt)
  * in leftover array on stk_a preform previous operation,    ->
  * repeat until 4 or less values left;
  */
-static void	ft_push_right(t_ps *inst, int to_psh)
+static void	ft_push_right(t_ps *inst, int to_psh, int mode)
 {
 	int mid;
 	int	half;
+	int ra_amt;
 
 	while (inst->amt_a)
 	{
@@ -68,11 +73,18 @@ static void	ft_push_right(t_ps *inst, int to_psh)
 		half = to_psh / 2;
 		inst->chunks[inst->chunks_pos] = half;
 		mid = ft_mid_value(inst->stk_a, to_psh);
+		printf("mid %d\n", mid);
+		ra_amt = 0;
 		while(half > 0)
 		{
-			ft_pushb_cheapest(inst, mid);
+			ra_amt = ra_amt + ft_pushb_cheapest(inst, mid);
 			half--;
 			to_psh--;
+		}
+		if(mode)
+		{
+			while (ra_amt--)
+				ft_rra(inst);
 		}
 	}
 }
@@ -122,13 +134,60 @@ void ft_main_sort(int *stk_a, int amt)
 	int 	to_srt;
 
 	ft_init_struct(&inst, stk_a, amt);
-	ft_push_right(&inst, amt);
+	ft_push_right(&inst, amt, 0);
+	int i = 0;
+	while (i < inst.amt_a)
+	{
+		printf("%d ", inst.stk_a[i]);
+		i++;
+	}
+	i = 0;
+	while (i < inst.amt_b)
+	{
+		printf("%d ", inst.stk_b[i]);
+		i++;
+	}
+	printf("\n");
 	while (inst.chunks_pos >= 0)
 	{
 		to_srt = ft_push_left(&inst);
-		ft_push_right(&inst, to_srt);
+		printf("left A - ");
+		while (i < inst.amt_a)
+		{
+			printf("%d ", inst.stk_a[i]);
+			i++;
+		}
+		i = 0;
+		printf("left B - ");
+		while (i < inst.amt_b)
+		{
+			printf("%d ", inst.stk_b[i]);
+			i++;
+		}
+		printf("\n");
+		ft_push_right(&inst, to_srt, 1);
+		printf("right A - ");
+		while (i < inst.amt_a)
+		{
+			printf("%d ", inst.stk_a[i]);
+			i++;
+		}
+		i = 0;
+		printf("right B - ");
+		while (i < inst.amt_b)
+		{
+			printf("%d ", inst.stk_b[i]);
+			i++;
+		}
+		printf("\n");
 	}
-	ft_putstr_fd(inst.sort_str, 1);
+/*	ft_putstr_fd(inst.sort_str, 1);
+	int i = 0;
+	while (i < inst.amt_a)
+	{
+		printf("%d ", inst.stk_a[i]);
+		i++;
+	}*/
 	ft_exit(&inst);
 }
 /*
