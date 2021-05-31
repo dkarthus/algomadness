@@ -6,7 +6,7 @@
  */
 void	ft_rra(t_ps *inst)
 {
-	int	tmp;
+	int tmp;
 	int i;
 
 	if (inst->amt_a < 2)
@@ -42,7 +42,7 @@ void	ft_rrb(t_ps *inst)
 		i--;
 	}
 	inst->stk_b[0] = tmp;
-	ft_memcpy(&inst->sort_str[inst->sort_str_pos], "rrb\n", 4);
+	ft_memcpy(&inst->sort_str[inst->sort_str_pos], "rrb\n\0", 5);
 	inst->sort_str_pos += 4;
 }
 

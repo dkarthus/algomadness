@@ -15,11 +15,8 @@ static void	ft_util1(t_ps *inst)
 	}
 	else
 	{
-		while (pos > 0)
-		{
+		while (pos--)
 			ft_rb(inst);
-			pos--;
-		}
 		ft_pa(inst);
 	}
 	ft_sort_b_3(inst);
@@ -34,18 +31,12 @@ static void	ft_util2(t_ps *inst)
 	int	i;
 
 	pos = ft_minmax(inst->stk_b, 4, 1);
-	i = 0;
-	while (i < pos)
-	{
+	i = pos;
+	while (pos--)
 		ft_rb(inst);
-		i++;
-	}
 	ft_pa(inst);
-	while (i > 0)
-	{
+	while (i--)
 		ft_rrb(inst);
-		i--;
-	}
 	ft_sort_b_3(inst);
 }
 

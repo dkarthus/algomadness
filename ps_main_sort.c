@@ -62,18 +62,19 @@ static void	ft_push_right(t_ps *inst, int to_psh, int mode)
 	int	half;
 	int ra_amt;
 
-	while (inst->amt_a)
+	if (mode && !inst->amt_b)
+		return;
+	while (to_psh)
 	{
 		if (to_psh <= 4)
 		{
 			ft_asort_for_less_4(inst, to_psh);
-			break ;
+			return;
 		}
 		inst->chunks_pos++;
 		half = to_psh / 2;
 		inst->chunks[inst->chunks_pos] = half;
 		mid = ft_mid_value(inst->stk_a, to_psh);
-		printf("mid %d\n", mid);
 		ra_amt = 0;
 		while(half > 0)
 		{
@@ -101,6 +102,8 @@ static int	ft_push_left(t_ps *inst)
 
 	cnt = 0;
 	i = 0;
+	if(inst->amt_b < 5)
+		return (0);
 	pshd = inst->chunks[inst->chunks_pos] - inst->chunks[inst->chunks_pos] / 2;
 	mid = ft_mid_value(inst->stk_b, inst->chunks[inst->chunks_pos]);
 	while(i < pshd)
@@ -135,7 +138,7 @@ void ft_main_sort(int *stk_a, int amt)
 
 	ft_init_struct(&inst, stk_a, amt);
 	ft_push_right(&inst, amt, 0);
-	int i = 0;
+/*	int i = 0;
 	while (i < inst.amt_a)
 	{
 		printf("%d ", inst.stk_a[i]);
@@ -147,11 +150,18 @@ void ft_main_sort(int *stk_a, int amt)
 		printf("%d ", inst.stk_b[i]);
 		i++;
 	}
-	printf("\n");
-	while (inst.chunks_pos >= 0)
+	printf("\n");*/
+	while (inst.amt_b > 0)
 	{
+		printf("\n IN A - %d; IN B - %d\n", inst.amt_a, inst.amt_b);
+		if (!inst.amt_b)
+			break;
+		if (inst.chunks_pos < 0)
+			break;
 		to_srt = ft_push_left(&inst);
-		printf("left A - ");
+		printf("\n tosrt %d\n", to_srt);
+		printf("\n MID A - %d; MID B - %d\n", inst.amt_a, inst.amt_b);
+/*		printf("left A - ");
 		while (i < inst.amt_a)
 		{
 			printf("%d ", inst.stk_a[i]);
@@ -164,9 +174,19 @@ void ft_main_sort(int *stk_a, int amt)
 			printf("%d ", inst.stk_b[i]);
 			i++;
 		}
-		printf("\n");
+		printf("\n");*/
+		//printf("%d\n", to_srt);
+		if (inst.chunks_pos < 0)
+			break;
+		if (!to_srt)
+			break;
 		ft_push_right(&inst, to_srt, 1);
-		printf("right A - ");
+		printf("\n OUT A - %d; OUT B - %d\n", inst.amt_a, inst.amt_b);
+		if (!inst.amt_b)
+			break;
+		if (inst.chunks_pos < 0)
+			break;
+/*		printf("right A - ");
 		while (i < inst.amt_a)
 		{
 			printf("%d ", inst.stk_a[i]);
@@ -179,15 +199,23 @@ void ft_main_sort(int *stk_a, int amt)
 			printf("%d ", inst.stk_b[i]);
 			i++;
 		}
-		printf("\n");
+		printf("\n");*/
 	}
-/*	ft_putstr_fd(inst.sort_str, 1);
 	int i = 0;
+	printf("\n A - ");
 	while (i < inst.amt_a)
 	{
 		printf("%d ", inst.stk_a[i]);
 		i++;
-	}*/
+	}
+	i = 0;
+	printf("\n B - ");
+	while (i < inst.amt_b)
+	{
+		printf("%d ", inst.stk_b[i]);
+		i++;
+	}
+//	ft_putstr_fd(inst.sort_str, 1);
 	ft_exit(&inst);
 }
 /*

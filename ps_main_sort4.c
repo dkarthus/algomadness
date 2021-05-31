@@ -78,24 +78,24 @@ void ft_sort_b_3(t_ps *inst)
 {
 	if (inst->stk_b[1] > inst->stk_b[0] && inst->stk_b[1] < inst->stk_b[2])
 		ft_util3(inst);
-	if (inst->stk_b[0] > inst->stk_b[1] && inst->stk_b[0] < inst->stk_b[2])
+	else if (inst->stk_b[0] > inst->stk_b[1] && inst->stk_b[0] < inst->stk_b[2])
 		ft_util1(inst);
-	if (inst->stk_b[1] > inst->stk_b[2] && inst->stk_b[1] < inst->stk_b[0])
+	else if (inst->stk_b[1] > inst->stk_b[2] && inst->stk_b[1] < inst->stk_b[0])
 	{
 		ft_pa(inst);
 		ft_pa(inst);
 		ft_pa(inst);
 	}
-	if (inst->stk_b[2] > inst->stk_b[1] && inst->stk_b[2] < inst->stk_b[0])
+	else if (inst->stk_b[2] > inst->stk_b[1] && inst->stk_b[2] < inst->stk_b[0])
 	{
 		ft_pa(inst);
 		ft_sb(inst);
 		ft_pa(inst);
 		ft_pa(inst);
 	}
-	if (inst->stk_b[2] > inst->stk_b[0] && inst->stk_b[2] < inst->stk_b[1])
+	else if (inst->stk_b[2] > inst->stk_b[0] && inst->stk_b[2] < inst->stk_b[1])
 		ft_util2(inst);
-	if (inst->stk_b[0] > inst->stk_b[2] && inst->stk_b[0] < inst->stk_b[1])
+	else if (inst->stk_b[0] > inst->stk_b[2] && inst->stk_b[0] < inst->stk_b[1])
 	{
 		ft_sb(inst);
 		ft_pa(inst);

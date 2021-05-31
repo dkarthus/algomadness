@@ -46,7 +46,7 @@ void ft_ss(t_ps *inst)
 	tmp = inst->sort_str_pos;
 	ft_sa(inst);
 	ft_sb(inst);
-	ft_memcpy(&inst->sort_str[tmp], "ss\n", 3);
+	ft_memcpy(&inst->sort_str[tmp], "ss\n\0", 4);
 	inst->sort_str_pos = tmp + 3;
 }
 

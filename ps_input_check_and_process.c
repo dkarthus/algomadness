@@ -20,17 +20,11 @@ void	ft_input_check(char *strs[], int amt, int mode)
 		if (strs[j][0] == '-')
 			i++;
 		if (!strs[j][i])
-		{
-			printf("1");
 			ft_error(2, NULL, NULL);
-		}
 		while (strs[j][i] != '\0')
 		{
 			if (!ft_isdigit(strs[j][i]))
-			{
-				printf("2");
 				ft_error(2, NULL, NULL);
-			}
 			i++;
 		}
 		j++;
@@ -131,11 +125,14 @@ int	*ft_input_process_alt(char *strs[], int amt)
  */
 int ft_sort_ch(const int *arr, int amt)
 {
-	while ((amt - 1) > 0)
+	int	i;
+
+	i = 0;
+	while (i < amt - 1)
 	{
-		if(arr[amt - 1] < arr[amt - 2])
+		if(arr[i] < arr[i + 1])
 			return (0);
-		amt--;
+		i++;
 	}
 	return (1);
 }
