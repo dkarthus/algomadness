@@ -43,7 +43,7 @@ static void	ft_util2(t_ps *inst)
 /*
  * Func for sorting 4 values chunk on stack B;
  */
-void ft_sort_b_4(t_ps *inst)
+void	ft_sort_b_4(t_ps *inst)
 {
 	if (inst->amt_b == 4)
 		ft_util1(inst);

@@ -5,32 +5,31 @@
  * minmax: 1 for max, 0 for min;
  * returns pos of this value;
  */
-int ft_minmax(int *arr, int n, int minmax)
+int	ft_minmax(int *arr, int n, int minmax)
 {
-	int	i;
-	int tmp;
+	int	i[2];
 
-	i = 0;
-	tmp = arr[0];
-	while (i < n)
+	i[0] = 0;
+	i[1] = arr[0];
+	while (i[0] < n)
 	{
 		if (minmax == 1)
 		{
-			if (tmp < arr[i])
-				tmp = arr[i];
+			if (i[1] < arr[i[0]])
+				i[1] = arr[i[0]];
 		}
 		if (minmax == 0)
 		{
-			if (tmp > arr[i])
-				tmp = arr[i];
+			if (i[1] > arr[i[0]])
+				i[1] = arr[i[0]];
 		}
-		i++;
+		i[0]++;
 	}
-	while (i > 0)
+	while (i[0] > 0)
 	{
-		if (tmp == arr[i - 1])
-			return (i - 1);
-		i--;
+		if (i[1] == arr[i[0] - 1])
+			return (i[0] - 1);
+		i[0]--;
 	}
 	return (-1);
 }
@@ -38,10 +37,10 @@ int ft_minmax(int *arr, int n, int minmax)
 /*
 * --Util func for ft_sort_a_4 for sorting final chunk--
 */
-static void ft_util_lst_chunk(t_ps *inst, int pos)
+static void	ft_util_lst_chunk(t_ps *inst, int pos)
 {
 	if (pos == 3)
-			ft_rra(inst);
+		ft_rra(inst);
 	else
 	{
 		while (pos--)
@@ -54,7 +53,7 @@ static void ft_util_lst_chunk(t_ps *inst, int pos)
 /*
  * --Util func for ft_sort_a_4 for sorting final chunk--
  */
-static void ft_util_default(t_ps *inst, int pos)
+static void	ft_util_default(t_ps *inst, int pos)
 {
 	int	i;
 
@@ -70,12 +69,12 @@ static void ft_util_default(t_ps *inst, int pos)
 /*
  * Func for sorting 4 values on stack A;
  */
-void ft_sort_a_4(t_ps *inst)
+void	ft_sort_a_4(t_ps *inst)
 {
-	int pos;
+	int	pos;
 
 	if (ft_sort_ch(inst->stk_a, 4))
-		return;
+		return ;
 	pos = ft_minmax(inst->stk_a, 4, 0);
 	if (inst->amt_a == 4)
 		ft_util_lst_chunk(inst, pos);

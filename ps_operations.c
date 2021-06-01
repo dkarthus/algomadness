@@ -4,7 +4,7 @@
  * Swap a - swap the first 2 elements at the top of stack a;
  * Do nothing if there is only one or no elements;
  */
-void ft_sa(t_ps *inst)
+void	ft_sa(t_ps *inst)
 {
 	int	tmp;
 
@@ -21,7 +21,7 @@ void ft_sa(t_ps *inst)
  * Swap b - swap the first 2 elements at the top of stack b;
  * Do nothing if there is only one or no elements;
  */
-void ft_sb(t_ps *inst)
+void	ft_sb(t_ps *inst)
 {
 	int	tmp;
 
@@ -37,9 +37,9 @@ void ft_sb(t_ps *inst)
 /*
  * SA and SB at the same time;
  */
-void ft_ss(t_ps *inst)
+void	ft_ss(t_ps *inst)
 {
-	int tmp;
+	int	tmp;
 
 	if (inst->amt_a < 2 || inst->amt_b < 2)
 		ft_putstr_fd("SS - WRONG OPERATION\n", 1);
@@ -54,9 +54,9 @@ void ft_ss(t_ps *inst)
  * push a - take the first element at the top of b and put it at the top of a;
  * Do nothing if b is empty;
  */
-void ft_pa(t_ps *inst)
+void	ft_pa(t_ps *inst)
 {
-	int tmp;
+	int	tmp;
 
 	tmp = 0;
 	if (inst->amt_b == 0)
@@ -83,9 +83,9 @@ void ft_pa(t_ps *inst)
  * push b - take the first element at the top of a and put it at the top of b;
  * Do nothing if a is empty;
  */
-void ft_pb(t_ps *inst)
+void	ft_pb(t_ps *inst)
 {
-	int tmp;
+	int	tmp;
 
 	tmp = 0;
 	if (inst->amt_a == 0)

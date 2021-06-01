@@ -9,7 +9,7 @@
 void	ft_input_check(char *strs[], int amt, int mode)
 {
 	int	i;
-	int j;
+	int	j;
 
 	j = 0;
 	if (mode)
@@ -123,14 +123,14 @@ int	*ft_input_process_alt(char *strs[], int amt)
  * returns(1) - OK (sorted)
  * returns (0) - KO (not sorted)
  */
-int ft_sort_ch(const int *arr, int amt)
+int	ft_sort_ch(const int *arr, int amt)
 {
 	int	i;
 
 	i = 0;
 	while (i < amt - 1)
 	{
-		if(arr[i] < arr[i + 1])
+		if (arr[i] > arr[i + 1])
 			return (0);
 		i++;
 	}

@@ -5,7 +5,7 @@
  * err = 1 - malloc error
  * err = 2 - invalid values
  */
-void ft_error(int err, char *location, t_ps *inst)
+void	ft_error(int err, char *location, t_ps *inst)
 {
 	if (err == 1)
 	{
@@ -31,7 +31,7 @@ void ft_error(int err, char *location, t_ps *inst)
 /*
  * 		Exit func, frees main struct;
  */
-void ft_exit(t_ps *inst)
+void	ft_exit(t_ps *inst)
 {
 	if (inst->stk_a)
 		free(inst->stk_a);

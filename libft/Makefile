@@ -62,6 +62,7 @@ SRC = ft_strlen.c \
 		ft_strtoupper.c \
 		ft_putwchar_fd.c \
 		ft_putwstr_fd.c \
+		ft_get_next_line.c
 
 OBJ = $(SRC:%.c=%.o)
 

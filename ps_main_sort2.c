@@ -4,54 +4,28 @@
  * Utility func for sorting both stacks when there only 4 values left in a;
  * amt_b_srt - amount of values in stack b to sort;
  */
-void ft_asort_for_less_4(t_ps *inst, int to_srt)
+void	ft_asort_for_less_4(t_ps *inst, int to_srt)
 {
 	if (to_srt == 3)
 	{
-		printf("a3 ");
 		ft_sort_a_3(inst);
 		if (inst->chunks[inst->chunks_pos] == 2)
 		{
-			printf("b2\n");
 			if (inst->stk_b[0] < inst->stk_b[1])
 				ft_sb(inst);
 			ft_pa(inst);
 			ft_pa(inst);
 		}
 		else if (inst->chunks[inst->chunks_pos] == 3)
-		{
 			ft_sort_b_3(inst);
-			printf("b3\n");
-		}
 	}
 	else if (to_srt == 4)
 	{
-		printf("a4 ");
 		ft_sort_a_4(inst);
 		if (inst->chunks[inst->chunks_pos] == 3)
-		{
 			ft_sort_b_3(inst);
-			printf("b3\n");
-		}
 		else if (inst->chunks[inst->chunks_pos] == 4)
-		{
 			ft_sort_b_4(inst);
-			printf("b4\n");
-		}
-	}
-	int i = 0;
-	printf("\n A - ");
-	while (i < inst->amt_a)
-	{
-		printf("%d ", inst->stk_a[i]);
-		i++;
-	}
-	i = 0;
-	printf("\n B - ");
-	while (i < inst->amt_b)
-	{
-		printf("%d ", inst->stk_b[i]);
-		i++;
 	}
 	inst->chunks[inst->chunks_pos] = 0;
 	inst->chunks_pos--;
@@ -60,7 +34,7 @@ void ft_asort_for_less_4(t_ps *inst, int to_srt)
 /*
  * --Util func for ft_sort_a_3--
  */
-static void ft_super_sa(t_ps *inst)
+static void	ft_super_sa(t_ps *inst)
 {
 	if (inst->amt_b >= 2 && inst->stk_b[0] < inst->stk_b[1])
 		ft_ss(inst);
@@ -71,7 +45,7 @@ static void ft_super_sa(t_ps *inst)
 /*
  * --Util func for ft_sort_a_3--
  */
-static void ft_super_rra(t_ps *inst)
+static void	ft_super_rra(t_ps *inst)
 {
 	if (inst->amt_a == 3)
 	{
@@ -100,7 +74,7 @@ static void ft_super_rra(t_ps *inst)
 /*
  * --Util func for ft_sort_a_3--
  */
-static void ft_super_ra(t_ps *inst)
+static void	ft_super_ra(t_ps *inst)
 {
 	if (inst->amt_a == 3)
 	{
@@ -123,10 +97,10 @@ static void ft_super_ra(t_ps *inst)
 /*
  * Func for sorting 3 values on stack A;
  */
-void ft_sort_a_3(t_ps *inst)
+void	ft_sort_a_3(t_ps *inst)
 {
 	if (ft_sort_ch(inst->stk_a, 3))
-		return;
+		return ;
 	else if (inst->stk_a[0] > inst->stk_a[1] && inst->stk_a[0] < inst->stk_a[2])
 		ft_super_sa(inst);
 	else if (inst->stk_a[1] > inst->stk_a[2] && inst->stk_a[1] < inst->stk_a[0])

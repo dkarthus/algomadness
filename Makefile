@@ -12,11 +12,13 @@ SRC = ps_input_check_and_process.c \
  		 ps_main_sort3.c \
  		 ps_main_sort4.c \
  		 ps_main_sort5.c \
- 		 ps_mid_value.c \
+ 		 ps_mid_and_init.c \
  		 ps_operations.c \
  		 ps_operations2.c \
  		 ps_operations3.c \
  		 push_swap.c \
+ 		 ps_defragment_output.c \
+ 		 ps_defragment_output2.c \
  		 error_handler.c
 
 OBJ = $(SRC:%.c=%.o)

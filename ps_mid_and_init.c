@@ -10,7 +10,7 @@ int	ft_mid_value(int *stk_a, int amt)
 	int	i;
 	int	j;
 	int	key;
-	int *tmp;
+	int	*tmp;
 
 	tmp = malloc(amt * sizeof(int));
 	if (!tmp)
@@ -30,6 +30,23 @@ int	ft_mid_value(int *stk_a, int amt)
 		i++;
 	}
 	key = tmp[amt / 2];
-	free(tmp);
-	return(key);
+	free (tmp);
+	return (key);
+}
+
+/**
+ * Utility func for ft_main_sort, inits main struct
+ */
+void	ft_init_struct(t_ps *inst, int *stk_a, int amt)
+{
+	inst->amt_a = amt;
+	inst->amt_b = 0;
+	inst->stk_a = stk_a;
+	inst->stk_b = malloc(amt * sizeof(int));
+	inst->chunks = malloc(100 * sizeof(int));
+	inst->chunks_pos = -1;
+	inst->sort_str = ft_calloc(20000, sizeof(char));
+	inst->sort_str_pos = 0;
+	if (!inst->stk_b || !inst->chunks || !inst->sort_str)
+		ft_error(1, "ft_init_struct", inst);
 }

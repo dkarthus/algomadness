@@ -3,7 +3,7 @@
 /*
  *
  */
-static int ft_cnt_strs(char *strs[])
+int	ft_cnt_strs(char *strs[])
 {
 	int	i;
 
@@ -16,12 +16,12 @@ static int ft_cnt_strs(char *strs[])
 /*
  *
  */
-static void ft_free_after_split(char **strs)
+void	ft_free_after_split(char **strs)
 {
 	int	i;
 
 	i = 0;
-	while(strs[i])
+	while (strs[i])
 	{
 		free(strs[i]);
 		i++;

@@ -18,6 +18,7 @@ typedef struct	s_ps
 	int 	sort_str_pos;
 }				t_ps;
 
+void	ft_defragment_str(char *str);
 void	ft_input_check(char *strs[], int amount, int mode);
 int		*ft_input_process(char *strs[], int amt);
 int		*ft_input_process_alt(char *strs[], int amt);
@@ -34,6 +35,18 @@ void	ft_sort_a_4(t_ps *inst);
 void	ft_sort_b_3(t_ps *inst);
 void	ft_sort_b_4(t_ps *inst);
 
+void	ft_free_after_split(char **strs);
+int		ft_cnt_strs(char *strs[]);
+void	ft_init_struct(t_ps *inst, int *stk_a, int amt);
+
+int		ft_defr_sa(char *str, int i);
+int		ft_defr_sb(char *str, int i);
+int		ft_defr_pa(char *str, int i);
+int		ft_defr_pb(char *str, int i);
+int		ft_defr_ra(char *str, int i);
+int		ft_defr_rb(char *str, int i);
+int		ft_defr_rra(char *str, int i);
+int		ft_defr_rrb(char *str, int i);
 
 void	ft_pa(t_ps *inst);
 void	ft_pb(t_ps *inst);

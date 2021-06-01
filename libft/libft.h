@@ -79,5 +79,6 @@ void			ft_putuintmax_fd(unsigned long long n, int fd);
 void			ft_strtoupper(char *str);
 void			ft_putwchar_fd(wchar_t c, int fd);
 void			ft_putwstr_fd(wchar_t *s, int fd);
+int				ft_get_next_line(int fd, char **line);
 
 #endif
