@@ -4,18 +4,17 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "./libft/libft.h"
-# 						include <stdio.h>
 
-typedef struct	s_ps
+typedef struct s_ps
 {
 	int		*stk_a;
 	int		*stk_b;
 	int		amt_a;
 	int		amt_b;
-	int 	*chunks;
-	int 	chunks_pos;
+	int		*chunks;
+	int		chunks_pos;
 	char	*sort_str;
-	int 	sort_str_pos;
+	int		sort_str_pos;
 }				t_ps;
 
 void	ft_defragment_str(char *str);

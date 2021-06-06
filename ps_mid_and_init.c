@@ -45,7 +45,7 @@ void	ft_init_struct(t_ps *inst, int *stk_a, int amt)
 	inst->stk_b = malloc(amt * sizeof(int));
 	inst->chunks = malloc(100 * sizeof(int));
 	inst->chunks_pos = -1;
-	inst->sort_str = ft_calloc(20000, sizeof(char));
+	inst->sort_str = ft_calloc(25000, sizeof(char));
 	inst->sort_str_pos = 0;
 	if (!inst->stk_b || !inst->chunks || !inst->sort_str)
 		ft_error(1, "ft_init_struct", inst);

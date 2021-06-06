@@ -132,7 +132,8 @@ void	ft_main_sort(int *stk_a, int amt)
 			break ;
 	}
 	ft_defragment_str(inst.sort_str);
-//	ft_defragment_str(inst.sort_str);
+	ft_defragment_str(inst.sort_str);
+	ft_defragment_str(inst.sort_str);
 	ft_putstr_fd(inst.sort_str, 1);
 	ft_exit(&inst);
 }

@@ -13,7 +13,7 @@ void	ft_error(int err, char *location, t_ps *inst)
 		ft_putstr_fd(" - malloc ERROR\n", 1);
 	}
 	if (err == 2)
-		ft_putstr_fd("ERROR!\nInvalid values.\n", 1);
+		ft_putstr_fd("ERROR!\n", 1);
 	if (inst)
 	{
 		if (inst->stk_a)

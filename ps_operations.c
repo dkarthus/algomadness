@@ -9,7 +9,7 @@ void	ft_sa(t_ps *inst)
 	int	tmp;
 
 	if (inst->amt_a < 2)
-		ft_putstr_fd("SA - WRONG OPERATION CALL\n", 1);
+		return ;
 	tmp = inst->stk_a[0];
 	inst->stk_a[0] = inst->stk_a[1];
 	inst->stk_a[1] = tmp;
@@ -26,7 +26,7 @@ void	ft_sb(t_ps *inst)
 	int	tmp;
 
 	if (inst->amt_b < 2)
-		ft_putstr_fd("SB - WRONG OPERATION CALL\n", 1);
+		return ;
 	tmp = inst->stk_b[0];
 	inst->stk_b[0] = inst->stk_b[1];
 	inst->stk_b[1] = tmp;
@@ -41,8 +41,6 @@ void	ft_ss(t_ps *inst)
 {
 	int	tmp;
 
-	if (inst->amt_a < 2 || inst->amt_b < 2)
-		ft_putstr_fd("SS - WRONG OPERATION\n", 1);
 	tmp = inst->sort_str_pos;
 	ft_sa(inst);
 	ft_sb(inst);
@@ -60,7 +58,7 @@ void	ft_pa(t_ps *inst)
 
 	tmp = 0;
 	if (inst->amt_b == 0)
-		ft_putstr_fd("PA - WRONG OPERATION CALL\n", 1);
+		return ;
 	while (tmp < inst->amt_a)
 	{
 		inst->stk_a[inst->amt_a - tmp] = inst->stk_a[inst->amt_a - tmp - 1];
@@ -89,7 +87,7 @@ void	ft_pb(t_ps *inst)
 
 	tmp = 0;
 	if (inst->amt_a == 0)
-		ft_putstr_fd("PB - WRONG OPERATION CALL\n", 1);
+		return ;
 	while (tmp < inst->amt_b)
 	{
 		inst->stk_b[inst->amt_b - tmp] = inst->stk_b[inst->amt_b - tmp - 1];

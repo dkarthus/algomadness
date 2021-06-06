@@ -3,9 +3,9 @@
 /*
  *	Defrags ra command if needed
  */
-int ft_defr_ra(char *str, int i)
+int	ft_defr_ra(char *str, int i)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(&str[3]);
 	if (!ft_strncmp(&str[3], "rra", 3))
@@ -27,9 +27,9 @@ int ft_defr_ra(char *str, int i)
 /*
  *	Defrags rb command if needed
  */
-int ft_defr_rb(char *str, int i)
+int	ft_defr_rb(char *str, int i)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(&str[3]);
 	if (!ft_strncmp(&str[3], "rrb", 3))
@@ -51,15 +51,15 @@ int ft_defr_rb(char *str, int i)
 /*
  *	Defrags rra command if needed
  */
-int ft_defr_rra(char *str, int i)
+int	ft_defr_rra(char *str, int i)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(&str[4]);
 	if (!ft_strncmp(&str[4], "ra\n", 3))
 	{
 		ft_memmove(str, &str[7], len);
-		str[len - 4] = '\0';
+		str[len - 3] = '\0';
 		return (i);
 	}
 	if (!ft_strncmp(&str[4], "rrb\n", 3))
@@ -75,15 +75,15 @@ int ft_defr_rra(char *str, int i)
 /*
  *	Defrags rrb command if needed
  */
-int ft_defr_rrb(char *str, int i)
+int	ft_defr_rrb(char *str, int i)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(&str[4]);
 	if (!ft_strncmp(&str[4], "rb\n", 3))
 	{
 		ft_memmove(str, &str[7], len);
-		str[len - 4] = '\0';
+		str[len - 3] = '\0';
 		return (i);
 	}
 	if (!ft_strncmp(&str[4], "rra\n", 3))
@@ -94,4 +94,21 @@ int ft_defr_rrb(char *str, int i)
 		return (i + 4);
 	}
 	return (i + 4);
+}
+
+/*
+ *	Defrags pb command if needed
+ */
+int	ft_defr_pb(char *str, int i)
+{
+	int	len;
+
+	len = ft_strlen(&str[6]);
+	if (!ft_strncmp(&str[3], "pa\n", 3))
+	{
+		ft_memmove(str, &str[6], len);
+		str[len] = '\0';
+		return (i);
+	}
+	return (i + 3);
 }

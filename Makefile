@@ -23,6 +23,15 @@ SRC = ps_input_check_and_process.c \
 
 OBJ = $(SRC:%.c=%.o)
 
+B_SRC = checker_bonus.c \
+		ps_input_check_and_process.c \
+		ps_mid_and_init.c \
+		ps_operations.c \
+		ps_operations2.c \
+		ps_operations3.c \
+		error_handler.c
+
+B_OBJ = $(B_SRC:%.c=%.o)
 
 .PHONY: all clean fclean re bonus
 
@@ -36,6 +45,9 @@ $(NAME): $(OBJ) $(LIBOBJ) push_swap.h
 
 $(LIBOBJ): ./libft/libft.h
 	make -C ./libft/
+
+bonus: $(B_OBJ) $(LIBOBJ) push_swap.h
+	gcc $(FLAG) $(B_OBJ) $(LIB) -o checker
 
 clean:
 	make clean -C ./libft/
